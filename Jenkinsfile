@@ -17,6 +17,5 @@ node
     stage('Push Docker Image')
    {
        sh "docker push siddharthalhat001/job-1-image:1.0  "
-   }
-}
+   }}
 
