@@ -12,10 +12,10 @@ node
    }
    stage('Build Docker Image')
    {
-       sh "docker build -t siddharthalhat001/job-1-image:1.0 . "
+       sh "docker build -t siddharthalhat001/job-1-image:2.0 . "
    }
     stage('Push Docker Image')
    {
-       sh "docker push siddharthalhat001/job-1-image:1.0  "
+       sh "docker push siddharthalhat001/job-1-image:2.0  "
    }}
 
