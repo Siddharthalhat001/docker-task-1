@@ -24,7 +24,7 @@ pipeline {
     }
        stage('Push Image to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'docker-credentials', variable: 'PASSWORD')]) {
+               withCredentials([usernameColonPassword(credentialsId: '45b94395-8fb4-45ac-aec1-0487d52c4c6f', variable: 'docker-credentials')]) {
                 sh 'sudo docker login -u siddharthalhat001 -p $PASSWORD'
                 }
                 sh 'docker push siddharthalhat001/job-1-image:$BUILD_NUMBER'
