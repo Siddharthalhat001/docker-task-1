@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-    
+
         stage('git clone'){
            steps {
               git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/Siddharthalhat001/docker-task-1.git'
@@ -11,17 +11,17 @@ pipeline {
        }
         stage('Build Docker Image') {
             steps {
-                sh 'sudo docker --version'
-                sh 'sudo docker build -t siddharthalhat001/job-1-image:$BUILD_NUMBER .'
-                sh 'sudo docker images'
+               
+                sh ' docker build -t siddharthalhat001/job-1-image:$BUILD_NUMBER .'
+               
             }
         }
         stage('Push Image to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: '45b94395-8fb4-45ac-aec1-0487d52c4c6f', variable: 'PASSWORD')]) {
-                sh 'sudo docker login -u siddharthalhat001 -p $PASSWORD'
+                sh ' docker login -u siddharthalhat001 -p $PASSWORD'
                 }
-                sh 'sudo docker push siddharthalhat001/job-1-image:$BUILD_NUMBER'
+                sh ' docker push siddharthalhat001/job-1-image:$BUILD_NUMBER'
                 
             }
         }
