@@ -3,11 +3,12 @@ pipeline {
     agent any
 
     stages {
-        stage('cloning code from git') {
-            steps {
-                git 'https://github.com/Siddharthalhat001/docker-task-1.git'
-            }
+    
+        stage('git clone'){
+           steps {
+              git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/Siddharthalhat001/docker-task-1.git'
         }
+       }
         stage('Build Docker Image') {
             steps {
                 sh 'sudo docker --version'
@@ -26,3 +27,4 @@ pipeline {
         }
     }
 }
+
