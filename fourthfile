@@ -1,4 +1,5 @@
 
+
 pipeline {
     environment {
     registry = "siddharthalhat001"
@@ -24,8 +25,6 @@ pipeline {
     }
        stage('Push Image to Docker Hub') {
             steps {
-               withCredentials([usernameColonPassword(credentialsId: '45b94395-8fb4-45ac-aec1-0487d52c4c6f', variable: 'docker-credentials')]) {
-                
                 sh 'docker push siddharthalhat001/job-1-image:$BUILD_NUMBER'
                 }
                 
@@ -34,4 +33,3 @@ pipeline {
         }
   
   }
-}
