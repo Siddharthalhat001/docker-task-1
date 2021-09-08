@@ -3,7 +3,7 @@
 pipeline {
     environment {
     registry = "siddharthalhat001"
-    registryCredential = 'docker_id'
+    registryCredential = '45b94395-8fb4-45ac-aec1-0487d52c4c6f  '
     dockerImage = ''
   }
   agent any
@@ -25,7 +25,12 @@ pipeline {
     }
        stage('Push Image to Docker Hub') {
             steps {
-                sh 'docker push siddharthalhat001/job-1-image:$BUILD_NUMBER'
+                script
+                {
+                 docker.withRegistry( '', registryCredential ) 
+                 {
+                 dockerImage.push()
+                }
                 }
                 
                 
