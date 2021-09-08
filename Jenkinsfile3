@@ -1,0 +1,40 @@
+pipeline {
+    environment {
+    registry = "pawankhanaparazymr"
+    registryCredential = 'docker_id'
+    dockerImage = ''
+  }
+  agent any
+   stages 
+   {
+
+   stage('SCM Checkout')
+   {
+   steps{
+       git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/Siddharthalhat001/docker-task-1.git'
+   }
+   }
+   
+   stage('Mvn Package'){
+    steps{
+    script{
+     sh "mvn clean package"
+    }
+    } 
+   }
+
+ 
+
+    stage('Build Docker Image ') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Push Docker Image')
+   {
+       sh "docker push siddharthalhat001/job-1-image:$BUILD_NUMBER"
+   }}
+
+
