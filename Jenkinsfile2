@@ -2,7 +2,7 @@ node
 {
     stage('Run Container on Dev Server')
     {
-      sh "docker run -d -p 8081:8080 siddharthalhat001/job-1-image:1.0"
+      sh "docker run -d -p 8077:8080 siddharthalhat001/job-1-image:1.0"
      
     }
     
